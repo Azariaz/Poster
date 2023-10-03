@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.film.Film;
 
-public class PosterManagerTestsBE {
+public class PosterManageBETest {
 
     PosterManager post = new PosterManager();
 
@@ -25,29 +25,20 @@ public class PosterManagerTestsBE {
         post.addFilm(film5);
     }
 
-
     @Test
-    public void shouldAddFilms() {                                  // добавление с пустым конструктором
-        Film[] expected = {film1, film2, film3, film4, film5};
-        Film[] actual = post.findAll();
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldReturnFixedLength() {                           // фиксированный размер
+    public void shouldAddFilms() {                                  // добавление фильмов
         post.addFilm(film6);
 
-        Film[] expected = {film1, film2, film3, film4, film5};
+        Film[] expected = {film1, film2, film3, film4, film5, film6};
         Film[] actual = post.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldFindLastLimit3() {                           // вывод всех фильмов в обратном порядке добавления, лимит 3
-        Film[] expected = {film5, film4, film3};                   // пустой конструктор
-        Film[] actual = post.findLast(3);
+    public void shouldFindLastLimit3() {                           // вывод всех фильмов в обратном порядке добавления, лимит 5
+        Film[] expected = {film5, film4, film3, film2, film1};
+        Film[] actual = post.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
     }
