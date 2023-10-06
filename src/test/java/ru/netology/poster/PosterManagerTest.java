@@ -15,6 +15,52 @@ public class PosterManagerTest {
 
 
     @Test
+    public void shouldFindLastLessLimit() {                           // когда фильмов меньше, чем лимит
+        PosterManager post = new PosterManager(9);
+
+        post.addFilm(film2);
+        post.addFilm(film1);
+        post.addFilm(film5);
+
+        Film[] expected = {film5, film1, film2};
+        Film[] actual = post.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindLastMoreLimit() {                           // когда фильмов больше, чем лимит
+        PosterManager post = new PosterManager(2);
+
+        post.addFilm(film2);
+        post.addFilm(film1);
+        post.addFilm(film5);
+        post.addFilm(film3);
+        post.addFilm(film6);
+
+        Film[] expected = {film6, film3};
+        Film[] actual = post.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindLastEqualsLimit() {                           // когда фильмов столько же, чем лимит
+        PosterManager post = new PosterManager(5);
+
+        post.addFilm(film2);
+        post.addFilm(film1);
+        post.addFilm(film5);
+        post.addFilm(film3);
+        post.addFilm(film6);
+
+        Film[] expected = {film6, film3, film5, film1, film2};
+        Film[] actual = post.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void shouldFindAll() {                           // вывод всех фильмов в порядке добавления
         PosterManager post = new PosterManager();
 

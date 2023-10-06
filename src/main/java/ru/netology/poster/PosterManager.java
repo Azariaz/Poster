@@ -28,6 +28,9 @@ public class PosterManager {
 
     public Film[] findLast() {
         Film[] all = films;
+        if (limit > all.length) {
+            limit = all.length;
+        }
         Film[] reversed = new Film[limit];
         for (int i = 0; i < reversed.length; i++) {
             reversed[i] = all[all.length - 1 - i];
